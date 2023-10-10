@@ -1,3 +1,5 @@
+import { StorageState } from "../types";
+
 const API_URL = 'http://localhost:8000';
 
 export const get = async <T>(url: string): Promise<T[]> => {
@@ -5,13 +7,23 @@ export const get = async <T>(url: string): Promise<T[]> => {
     return await response.json();
 }
 
-type DebounceFunction = (...args: any[]) => void;
-export const debounce = (func: DebounceFunction, timeout: number = 300): DebounceFunction => {
-    let timer: NodeJS.Timeout | undefined;
-    return (...args: any[]) => {
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-            func.apply(this, args);
-        }, timeout);
-    };
-};
+export type LocalStorageTypes = {
+    states: StorageState[];
+  };
+  
+  export function getLocalStorageData<Key extends keyof LocalStorageTypes>(
+    item: Key,
+    fallbackValue: LocalStorageTypes[Key],
+  ): LocalStorageTypes[Key] {
+    const lsData = localStorage.getItem(item);
+  
+    return lsData ? (JSON.parse(lsData) as LocalStorageTypes[Key]) : fallbackValue;
+  }
+  
+  export function setLocalStorageData<Key extends keyof LocalStorageTypes>(
+    item: Key,
+    value: LocalStorageTypes[Key],
+  ): void {
+    const stringifiedValue = JSON.stringify(value);
+    localStorage.setItem(item, stringifiedValue);
+  }

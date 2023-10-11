@@ -1,7 +1,7 @@
 import { Box, Checkbox, Chip, CircularProgress, List, Paper, TextField, Typography } from '@mui/material';
 import React, { useRef, KeyboardEvent } from 'react';
 import { TypeaheadOption } from '../types';
-import { useClickOutside } from '../utils/useClickOutside';
+import { useClickOutside } from '../hooks/useClickOutside';
 
 
 type Props = {

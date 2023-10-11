@@ -2,10 +2,11 @@ import { toast } from 'react-toastify';
 import { Box, Button } from '@mui/material';
 import { FC, useEffect, useRef, useState, KeyboardEvent } from 'react';
 import Typeahead from '../components/Typeahead';
-import { get, getLocalStorageData, setLocalStorageData } from '../utils/utils';
-import { useClickOutside } from '../utils/useClickOutside';
-import { useDebounce } from '../utils/useDebounce';
+import { get } from '../utils/api';
+import { useClickOutside } from '../hooks/useClickOutside';
 import { TypeaheadOption } from '../types';
+import { useDebounce } from '../hooks/useDebounce';
+import { getLocalStorageData, setLocalStorageData } from '../utils/storage';
 
 const StateSelect: FC = () => {
     const [loading, setLoading] = useState<boolean>(false);

@@ -30,6 +30,11 @@ Install the required dependencies:
 npm install
 ```
 
+Run the app 
+```sh
+npm run dev
+```
+
 ## Available Scripts
 ```sh
 npm run start
